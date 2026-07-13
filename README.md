@@ -1,5 +1,4 @@
 <img src="https://i.hizliresim.com/sagt6w4.png" ></a>
-There may be errors, it needs to be examined
 
 install new design
 demo
