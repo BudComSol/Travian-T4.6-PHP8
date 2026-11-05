@@ -58,7 +58,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
 }
     </style>
    <center> <img src="img/buy.gif" style="width:550px;"></center>
-<? 
+   <?php
 if($session->lang == 'en'){
     echo '<h1 class="titleInHeader">Altın Satın Al</h1><center>';
     echo '<br><br><a href="https://shopier.com/4654641"><div class="altın"><font size="3px">600 <img src="img/x.gif" alt="Gold" class="gold"> 10 TL <br></font></div></a><br>';

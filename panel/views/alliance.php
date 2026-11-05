@@ -137,13 +137,12 @@ $database->queryFetch
 
 									$sql = "SELECT * FROM ali_permission WHERE alliance = ".$_GET['aid']."";
 
-									$result = mysql_query($sql);
+									$result = $database->query($sql);
 
-									while($row = mysql_fetch_assoc($result))
-
+									foreach($result as $row)
 									{
 
-										$player = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = ".$row['uid'].""));
+										$player = $database->queryFetch("SELECT * FROM users WHERE id = ".$row['uid']."");
 
 										if($row['opt1'] == 1) { $position1 = "Assign To Position"; } else { $position1 = "No Assigning Positions"; }
 
@@ -452,9 +451,9 @@ $database->queryFetch
 
 					$sql = "SELECT * FROM ali_log WHERE aid = ".$_GET['aid']."";
 
-					$result = mysql_query($sql);
+					$result = $database->query($sql);
 
-					while($row = mysql_fetch_assoc($result))
+					foreach($result as $row)
 
 					{
 
@@ -510,9 +509,9 @@ $database->queryFetch
 
 					$sql = "SELECT * FROM diplomacy WHERE alli1 = ".$_GET['aid']."";
 
-					$result = mysql_query($sql);
+					$result = $database->query($sql);
 
-					while($row = mysql_fetch_assoc($result))
+					foreach($result as $row)
 
 					{
 
@@ -528,7 +527,7 @@ $database->queryFetch
 
 
 
-						$ally = mysql_fetch_assoc(mysql_query("SELECT * FROM alidata WHERE id = ".$row['alli2'].""));
+						$ally = $database->queryFetch("SELECT * FROM alidata WHERE id = ".$row['alli2']."");
 
 						echo '
 
@@ -580,9 +579,9 @@ $database->queryFetch
 
 					$sql = "SELECT * FROM diplomacy WHERE alli2 = ".$_GET['aid']."";
 
-					$result = mysql_query($sql);
+					$result = $database->query($sql);
 
-					while($row = mysql_fetch_assoc($result))
+					foreach($result as $row)
 
 					{
 
@@ -598,7 +597,7 @@ $database->queryFetch
 
 
 
-						$ally = mysql_fetch_assoc(mysql_query("SELECT * FROM alidata WHERE id = ".$row['alli1'].""));
+						$ally = $database->queryFetch("SELECT * FROM alidata WHERE id = ".$row['alli1']."");
 
 						echo '
 
@@ -652,9 +651,9 @@ $database->queryFetch
 
 					$sql = "SELECT * FROM diplomacy WHERE alli1 = ".$_GET['aid']." OR alli2 = ".$_GET['aid']." AND accepted = 1";
 
-					$result = mysql_query($sql);
+					$result = $database->query($sql);
 
-					while($row = mysql_fetch_assoc($result))
+					foreach($result as $row)
 
 					{
 
@@ -670,9 +669,9 @@ $database->queryFetch
 
 
 
-						$ally1 = mysql_fetch_assoc(mysql_query("SELECT * FROM alidata WHERE id = ".$row['alli1'].""));
+						$ally1 = $database->queryFetch("SELECT * FROM alidata WHERE id = ".$row['alli1']."");
 
-						$ally2 = mysql_fetch_assoc(mysql_query("SELECT * FROM alidata WHERE id = ".$row['alli2'].""));
+						$ally2 = $database->queryFetch("SELECT * FROM alidata WHERE id = ".$row['alli2']."");
 
 						echo '
 

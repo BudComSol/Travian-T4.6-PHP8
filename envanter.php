@@ -53,7 +53,7 @@ include("application/Account.php");
                 
                 
                    
-                <?
+                <?php
                 
 if(isset($_GET['id'])){
   $id = preg_replace("/[^a-zA-Z0-9_-]/", "", $_GET['id']);
@@ -112,12 +112,12 @@ td {
   vertical-align: inherit;
 }</style>
 
-<?
+<?php
 if($id >= 0){
   include ("application/views/Envanter/altinbildir.tpl");
 }
 ?>
-<center><font size="2px"><strong>Hello, <? echo $session->username; ?> Number of Cases You Have Opened: (<? echo $mykasa2['envantersay']; ?>)</strong></font>
+<center><font size="2px"><strong>Hello, <?php echo $session->username; ?> Number of Cases You Have Opened: (<?php echo $mykasa2['envantersay']; ?>)</strong></font>
 <div style="text-align: center">
 </div>
 <th colspan="3"><img src="./gpack/yilmaz/mainPage/img_ltr/oyun/piy.png" style="width:500px;height:25px;"><br><font size="3px"><b>When you vote, you win a case.</b></font></th>
@@ -130,7 +130,7 @@ if($id >= 0){
 <thead><tr>
 
 </tr></thead>
-  <?
+  <?php
                           while($yaz = mysqli_fetch_array($listele_sql))
                               {
                                   
@@ -143,10 +143,10 @@ if($id >= 0){
   
   </tr>
   <tr>
-  <td class="preview"><? if($sira == 1){ echo '<img src="./gpack/yilmaz/mainPage/img_ltr/oyun/siralama/1.png">'; }  if($sira == 2){ echo '<img src="./gpack/yilmaz/mainPage/img_ltr/oyun/siralama/2.png">'; } if($sira == 3){ echo '<img src="./gpack/yilmaz/mainPage/img_ltr/oyun/siralama/3.png">'; } ?></td>
-      <td class="preview"><a href="spieler.php?uid=<? echo $uye['id']; ?>"><? echo $uye['username']; ?></a></td>
+  <td class="preview"><?php if($sira == 1){ echo '<img src="./gpack/yilmaz/mainPage/img_ltr/oyun/siralama/1.png">'; }  if($sira == 2){ echo '<img src="./gpack/yilmaz/mainPage/img_ltr/oyun/siralama/2.png">'; } if($sira == 3){ echo '<img src="./gpack/yilmaz/mainPage/img_ltr/oyun/siralama/3.png">'; } ?></td>
+      <td class="preview"><a href="spieler.php?uid=<?php echo $uye['id']; ?>"><?php echo $uye['username']; ?></a></td>
       
-      <td class="text"><strong><? echo'Number of Cases Opened: '.$uye['envantersay'].'</strong></td>';
+      <td class="text"><strong><?php echo'Number of Cases Opened: '.$uye['envantersay'].'</strong></td>';
       
       
       
@@ -163,7 +163,7 @@ if($id >= 0){
 
 <tr>
 
-<?
+<?php
 $MyGold = mysqli_query($connection, "SELECT * FROM users WHERE `id`='".$session->uid."'");
                   $my = mysqli_fetch_array($MyGold);
                   
@@ -179,7 +179,7 @@ $listele_sql = mysqli_query($connection,"SELECT * FROM kasalar WHERE id > '0' OR
     $envanterkac = $yaz['envanter'];
     $envanterkacc = $my['envanter'.$yaz['envanter'].''];
 ?>
-<button class="trav_buttons" onclick="window.location.href = '<? echo "kasaac.php?id=".$yaz["11"].""; ?>';"><? echo''.$img.' title="<b><center>'.$yaz['kasadi'].'</b><br><br>To your city '.number_format($yaz['odun']*SPEED).' Wood, '.number_format($yaz['tugla']*SPEED).' Clay, '.number_format($yaz['demir']*SPEED).' Iron '.number_format($yaz['tahil']*SPEED).' Crop ';
+<button class="trav_buttons" onclick="window.location.href = '<?php echo "kasaac.php?id=".$yaz["11"].""; ?>';"><?php echo''.$img.' title="<b><center>'.$yaz['kasadi'].'</b><br><br>To your city '.number_format($yaz['odun']*SPEED).' Wood, '.number_format($yaz['tugla']*SPEED).' Clay, '.number_format($yaz['demir']*SPEED).' Iron '.number_format($yaz['tahil']*SPEED).' Crop ';
 
 if($yaz['altinver'] > 0){
           echo '<center><b>+ 1 to 5 gold and +'.$yaz['hayvan'].' of each oasis soldier type</b>';
@@ -192,7 +192,7 @@ if($yaz['goldclub'] > 0){
 }
 
 echo '<br><br>Click to open."><br>there are '; echo $envanterkacc; ?></button>
-<?
+<?php
 }
 ?>
 </tr>

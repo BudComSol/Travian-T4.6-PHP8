@@ -13,15 +13,16 @@ include_once("../../Database/db_MYSQL.php");
 
 
 $sql = "SELECT id FROM users ORDER BY ID DESC LIMIT 1";
-$loops = mysql_result($database->queryFetch($sql), 0);
+$lastUser = $database->queryFetch($sql);
+$loops = $lastUser['id'] ?? 0;
 
 $plusdur = $_POST['plus'] * 86400;
 
 for($i = 0; $i < $loops + 1; $i++)
 {
 	$query = "SELECT * FROM users WHERE id = ".$i."";
-	$result = $database->queryFetch($query);
-	while($row = mysql_fetch_assoc($result))
+	$row = $database->queryFetch($query);
+	if($row)
 	{
 		if($row['plus'] < time()) { $plusbefore = time(); $addplus = $plusbefore + $plusdur; } elseif($row['plus'] > time()) { $plusbefore = $row['plus']; $addplus = $plusbefore + $plusdur; }
 		$database->queryFetch("UPDATE users SET

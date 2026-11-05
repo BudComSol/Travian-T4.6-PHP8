@@ -22,10 +22,10 @@ include("banksystem.php");
 <li>3300 Altın Satın Alındığında 7 Adet Çark Çevirme Hakkı Eklenir</li>
 </div>
 
-<div class="boxes boxesColor gray adventureStatusMessage"><div class="boxes-tl"></div><div class="boxes-tr"></div><div class="boxes-tc"></div><div class="boxes-ml"></div><div class="boxes-mr"></div><div class="boxes-mc"></div><div class="boxes-bl"></div><div class="boxes-br"></div><div class="boxes-bc"></div><div class="boxes-contents"> <center>Sahip olduğun çark çevirme sayısı: <b><span id='gold'><? echo $session->cark;?></span></b> adet <br>
+<div class="boxes boxesColor gray adventureStatusMessage"><div class="boxes-tl"></div><div class="boxes-tr"></div><div class="boxes-tc"></div><div class="boxes-ml"></div><div class="boxes-mr"></div><div class="boxes-mc"></div><div class="boxes-bl"></div><div class="boxes-br"></div><div class="boxes-bc"></div><div class="boxes-contents"> <center>Sahip olduğun çark çevirme sayısı: <b><span id='gold'><?php echo $session->cark;?></span></b> adet <br>
 
 
-Şuana kadar çevirdiğiniz çark sayısı: <b><span id='gold'><? echo $session->carksay; ?></span></b> adet
+Şuana kadar çevirdiğiniz çark sayısı: <b><span id='gold'><?php echo $session->carksay; ?></span></b> adet
 
 </center></div></div>
 
@@ -68,7 +68,7 @@ text{
 <div id="question"><h1>
     
 
-<? 
+<?php
  if($_GET['yazi'] == '0'){ echo 'Tebrikler ! 10000 Altın Kazandınız'; }
  if($_GET['yazi'] == '1'){ echo 'Tebrikler ! 1000 Gümüş Kazandınız'; } 
  if($_GET['yazi'] == '2'){ echo 'Tebrikler ! 10 Altın Kazandınız'; }
@@ -194,11 +194,11 @@ text{
             return data[i].label;
         });
 
-       <?
+       <?php
 if ($session->cark > 0){
 ?>
     container.on("click", spin);
-    <?
+    <?php
 }
 ?>
 
@@ -359,15 +359,15 @@ if ($session->cark > 0){
         .attr("y", 15)
         .attr("text-anchor", "middle")
 
-        <?
+        <?php
         if($session->cark > 0){
             ?>
         .text("ÇEVİR")
-        <?
+        <?php
         }else{
         ?>
             .text("Satın Al")
-            <? 
+            <?php
 
         }
         ?>

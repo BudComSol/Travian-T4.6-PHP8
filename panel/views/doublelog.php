@@ -38,9 +38,9 @@ $village = $database->getVillage($id);
 
 				$sql = "SELECT * FROM `palevo` WHERE `browser` = '".$id."' AND `type` = '5'  GROUP BY `time` HAVING COUNT(`time`) > 1";
 
-				$result = mysql_query($sql);
+				$result = $database->query($sql);
 
-				while($row = mysql_fetch_assoc($result))
+				foreach($result as $row)
 
 				{
 
@@ -125,9 +125,9 @@ $database->queryFetch
 
 				$sql = "SELECT * FROM `palevo` WHERE `from` = '".$id."' AND `type` = '5'  GROUP BY `time` HAVING COUNT(`time`) > 1";
 
-				$result = mysql_query($sql);
+				$result = $database->query($sql);
 
-				while($row = mysql_fetch_assoc($result))
+				foreach($result as $row)
 
 				{
 
@@ -211,9 +211,9 @@ $database->queryFetch
 
              		$sql = "SELECT * FROM `palevo` WHERE `browser` = '".$id."' AND `type` = '55' GROUP BY `time` HAVING COUNT(`time`) > 1";
 
-				$result = mysql_query($sql);
+				$result = $database->query($sql);
 
-				while($row = mysql_fetch_assoc($result))
+				foreach($result as $row)
 
 				{
 
@@ -268,4 +268,3 @@ $database->queryFetch
 		</thead>
 
 	</table>
-

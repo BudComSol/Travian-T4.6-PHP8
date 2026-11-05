@@ -18,9 +18,7 @@
 
 $time = time();
 
-$ban = mysql_query("SELECT * FROM banlist WHERE `uid` = '".$session->uid."' and active = 1");
-
-$ban1 = mysql_fetch_array($ban);
+$ban1 = $database->queryFetch("SELECT * FROM banlist WHERE `uid` = '".$session->uid."' and active = 1");
 
 ?>
 
