@@ -38,9 +38,9 @@ if(isset($id))
 
 				$sql = "SELECT * FROM illegal_log WHERE user = $id";
 
-				$result = mysql_query($sql);
+				$result = $database->query($sql);
 
-				while($row = mysql_fetch_assoc($result))
+				foreach($result as $row)
 
 				{
 

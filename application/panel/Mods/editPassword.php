@@ -11,7 +11,6 @@ include_once("../../Database/db_MYSQL.php");
 
 $id = $_POST['uid'];
 $q=$database->queryFetch("SELECT username from `users` WHERE `id`='".$id."'");
-//$dbarray=mysql_fetch_array($q);
 $pass = md5($_POST['newpw'].mb_convert_case($q['username'],MB_CASE_LOWER,"UTF-8"));
 
 

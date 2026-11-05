@@ -2,7 +2,8 @@
 
 
 
-include_once("../../config.php");
+include_once __DIR__ . "/../../application/config.php";
+include_once __DIR__ . "/../../application/Database/db_MYSQL.php";
 
 
 
@@ -19,19 +20,18 @@ if(isset($_GET['g']))
 
 	}else{
 
-$id = $_POST['id'];
+$id = (int)($_POST['id'] ?? 0);
 
 
 
   echo $_POST['gold'];
 
-  $gold=$_POST['gold'];
+  $gold = (int)($_POST['gold'] ?? 0);
 
-mysql_query("UPDATE users SET gold = gold - $gold WHERE id = ".$id."");
-
-
-
-mysql_query($q);
+$database->query(
+    "UPDATE users SET gold = gold - :gold WHERE id = :id",
+    ['gold' => $gold, 'id' => $id]
+);
 
        header("Location: ../../../panel/index.php?p=player&uid=$id");
 

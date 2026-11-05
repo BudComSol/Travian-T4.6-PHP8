@@ -4399,7 +4399,7 @@ $lang['Msgs'] = array(
 	</div>',
 
 	
-	'WW' => 'Natar'ın duvarlarındaki ilk savaşlardan bu yana sayısız zaman geçti, Natar'ın duvarlarında bir dizi Josh yıkıldı ve ölüm kokusu yeni başlamış bir yerde yayılmaya başladı! Gelecek için mavna attığınızdan emin olun!
+	'WW' => 'Natar\'ın duvarlarındaki ilk savaşlardan bu yana sayısız zaman geçti, Natar\'ın duvarlarında bir dizi Josh yıkıldı ve ölüm kokusu yeni başlamış bir yerde yayılmaya başladı! Gelecek için mavna attığınızdan emin olun!
 <br> <br>
 Cesetleri titreten hikayeler, hikayeler ve huşu sahneleri olan izcilere geldiler, Josh hafif, yoldan kimse geçmedi ve hayatı sona erdi, çok büyük bir güç, acımasız ve acımasız bir güç, insanların ezici bir umudu, savunmanızı donatmaya başlayan bir yarış ve direniş ve saldırı için ordunuz son değil.
 <br> <br>

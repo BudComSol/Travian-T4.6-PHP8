@@ -87,7 +87,7 @@ global $session;
 
     }
 
-    $mensagem = utf8_encode($mensagem);
+    $mensagem = mb_convert_encoding($mensagem, 'UTF-8', 'ISO-8859-1');
 
     $this->modifyGold($uid, $gold, 0);
 
@@ -5234,28 +5234,6 @@ $artvalue[$i]=(!isset($allsamearts[$i])  or count($allsamearts[$i])==0)?$artefac
             
 
             
-
-            function mysql_fetch_all($result)
-
-    {
-
-        $all = array();
-
-        if ($result) {
-
-            while ($row = mysql_fetch_assoc($result)) {
-
-                $all[] = $row;
-
-            }
-
-            return $all;
-
-        }
-
-    }
-
-
 
 			/***************************
 

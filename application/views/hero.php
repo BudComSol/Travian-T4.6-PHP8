@@ -111,7 +111,7 @@ $rp = 3 * SPEED * $session->heroD['product'];
 
     <div class="heroStatus" title="<?= SIDEINFO_HERO8; ?>||<?= $where ?>" data-status="100">
         <a href="/build.php?id=39&amp;&amp;tt=2" title="">
-            <?
+            <?php
 
             if ($units['u11'] == 0) { ?>
                 <svg viewBox="0 0 19.08 20" class="heroRunning">
@@ -123,7 +123,7 @@ $rp = 3 * SPEED * $session->heroD['product'];
                     </g>
                 </svg>
 
-            <?     } else { ?>
+            <?php     } else { ?>
                 <svg viewBox="0 0 20 17.43" class="heroHome">
                     <g class="outline">
                         <path d="M20 10L10 0 0 10l2.56 2.56 1.74-1.75v6.62h11.39V11l1.64 1.63zm-8.36 4.92H8.36V9.58h3.28z"></path>
@@ -132,7 +132,7 @@ $rp = 3 * SPEED * $session->heroD['product'];
                         <path d="M20 10L10 0 0 10l2.56 2.56 1.74-1.75v6.62h11.39V11l1.64 1.63zm-8.36 4.92H8.36V9.58h3.28z"></path>
                     </g>
                 </svg>
-            <?    }
+            <?php    }
             ?>
 
         </a>

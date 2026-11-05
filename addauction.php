@@ -61,7 +61,7 @@ if (isset($_POST['submitted']) && $_POST['submitted'] == "yes") {
     } else {
         $mtime = 60 * 60;
     }*/
-    mysqli_query("UPDATE auction SET finish = 0") or die(mysql_error());
+    $database->query("UPDATE auction SET finish = 0");
     for ($y = 1; $y < 16; $y++) {
         if (isset($_POST[$y . "_c"]) && !$_POST[$y . "_c"] == "") {
             if (isset($_POST[$y . "_n"]) && is_numeric($_POST[$y . "_n"]) && $_POST[$y . "_n"] > 0) {
@@ -71,7 +71,7 @@ if (isset($_POST['submitted']) && $_POST['submitted'] == "yes") {
                 $item_time = $_POST[$y . "_t"];
                 $qty = $item_qty;
 
-                mysqli_query("UPDATE auction SET finish = 1, number = '" . $item_qty . "', time = '" . $item_time . "' WHERE id = " . $item_id) or die(mysqli_query());
+                $database->query("UPDATE auction SET finish = 1, number = '" . $item_qty . "', time = '" . $item_time . "' WHERE id = " . $item_id);
 
 
             }
@@ -92,11 +92,8 @@ if (isset($_POST['submitted']) && $_POST['submitted'] == "yes") {
         </tr>
 
         <?php
-        $res = mysqli_query("SELECT * FROM auction");
-        $rows[0] = '';
-        while ($array = mysql_fetch_assoc($res)) {
-            $rows[] = $array;
-        }
+        $rows = $database->query("SELECT * FROM auction");
+        $rows = array_merge([''], $rows);
         for ($i = 1; $i < 16; $i++) {
             echo '<tr>';
             if (($rows[$i]['finish'] == 1)) {

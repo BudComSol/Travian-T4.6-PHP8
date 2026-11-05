@@ -10,8 +10,8 @@ class banksystem
         $value = substr($milo, 0, 40);
         $email = htmlspecialchars($value);
         $who = $database->queryFetch("SELECT * FROM bank WHERE `email`='" . $email . "'");
-        $info = mysql_fetch_array($who);
-        if (count($info)) {
+        $info = $who;
+        if (!empty($info)) {
             $code = $this->generateRandStr(10);
             $ip = $_SERVER['REMOTE_ADDR'];
             $mailer->sendGold($email, $code);
@@ -28,8 +28,8 @@ class banksystem
         $value = substr($email, 0, 30);
         $email1 = htmlspecialchars($value);
         $who = $database->queryFetch("SELECT gold FROM bank WHERE email='" . $email1 . "'");
-        $info = mysql_fetch_array($who);
-        $return['gold'] = $info['gold'];
+        $info = $who;
+        $return['gold'] = $info['gold'] ?? 0;
         return $return;
     }
 
@@ -54,7 +54,7 @@ class banksystem
         WHERE
         o.email='" . $email . "' and o.status ='0' ORDER BY o.id DESC");
 
-        $lineinfo = mysql_fetch_array($who);
+        $lineinfo = $who;
 
         if ($lineinfo['gold'] >= $gold && !empty($lineinfo) && $lineinfo['code'] == $code) {
 
@@ -106,7 +106,7 @@ class banksystem
         $code = htmlspecialchars($code);
 
         $getline2 = $database->queryFetch("SELECT gold,server,userid,email,code FROM operation WHERE `email`='" . $email . "' and `code`='" . $code . "' and `status`='0'");
-        $lineinfo2 = mysql_fetch_array($getline2);
+        $lineinfo2 = $getline2;
 
         if (!empty($lineinfo2)) {
             $checode = $lineinfo2['code'];

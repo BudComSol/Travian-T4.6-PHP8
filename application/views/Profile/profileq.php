@@ -97,23 +97,23 @@ if($session->sit == 0){
 				   <td>Madalyalarınız</td>
 				   <td colspan="2">Tüm PvpTravian Oyuncularına Verilir.</td>
 				   
-				   <td>[#emektar]<br><?if($session->email == "adminddddd@gmail.com"){?>
+				   <td>[#emektar]<br><?php if($session->email == "adminddddd@gmail.com"){?>
 				   
 												[#vip]<br>[#arena]<br>[#profesyonel]<br><br>[#uzman]<br>[#basari1]<br>[#basari2]<br>[#basari3]<br>[#basari4]<br><br>[#saldiri1]<br>[#saldiri2]<br>[#saldiri3]<br>[#saldiri4]<br><br>[#savunma1]<br>[#savunma2]<br>[#savunma3]<br>[#savunma4]</td>
-													<?}?>
+													<?php }?>
 													
 													
-				<?if($session->email == "erenzazu@gmail.com"){?>
+				<?php if($session->email == "erenzazu@gmail.com"){?>
 				   
 												[#vip]<br>[#arena]<br>[#profesyonel]<br><br>[#uzman]<br>[#basari1]<br>[#basari2]<br>[#basari3]<br>[#basari4]<br><br>[#saldiri1]<br>[#saldiri2]<br>[#saldiri3]<br>[#saldiri4]<br><br>[#savunma1]<br>[#savunma2]<br>[#savunma3]<br>[#savunma4]</td>
-													<?}?>
-		<?if($session->email == "mert.meister@hotmail.com"){?>
+													<?php }?>
+		<?php if($session->email == "mert.meister@hotmail.com"){?>
 				   
 												[#vip]<br>
-													<?}?>
+													<?php }?>
 	
 	
-	<?
+	<?php
 	$times=TIMES;
 	$podryad=$times." ".$podryad;
 	$titel=BONUS;

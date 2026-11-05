@@ -1,4 +1,4 @@
-<?
+<?php
 if($bayrakcek == '1'){
 ?>
 <h2><center>Madalya Ödülleri</center></h2>
@@ -77,7 +77,7 @@ if($bayrakcek == '1'){
 		</tbody>
 		</tr>
 </table>
-<?
+<?php
 }else{
 ?>
 <h2><center>Medal Awards</center></h2>
@@ -156,6 +156,6 @@ if($bayrakcek == '1'){
 		</tbody>
 		</tr>
 </table>
-<?
+<?php
 }
 ?>

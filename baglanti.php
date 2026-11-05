@@ -1,4 +1,4 @@
-<?
+<?php
 $DBNAME = "travian";
 $DBHOST = "localhost";
 $DBUSER = "root";
@@ -19,7 +19,7 @@ $db_user = 'root';
 $db_password = '';
 $connection = mysqli_connect($host, $db_user, $db_password);
 mysqli_select_db($connection, $db_name);
-mysqli_query("SET NAMES UTF8");
+mysqli_set_charset($connection, "utf8");
 
 $host2 = 'localhost';
 $db_name2 = 'travian';
@@ -27,7 +27,7 @@ $db_user2 = 'root';
 $db_password2 = '';
 $connection2 = mysqli_connect($host2, $db_user2, $db_password2);
 mysqli_select_db($connection2, $db_name2);
-mysqli_query("SET NAMES UTF8");
+mysqli_set_charset($connection2, "utf8");
 
 
 $host3 = 'localhost';
@@ -36,5 +36,5 @@ $db_user3 = 'root';
 $db_password3 = '';
 $connection3 = mysqli_connect($host3, $db_user3, $db_password3);
 mysqli_select_db($connection3, $db_name3);
-mysqli_query("SET NAMES UTF8");
+mysqli_set_charset($connection3, "utf8");
 ?>
