@@ -1356,9 +1356,9 @@ function InsertUniqueIP($ip,$email){
 
         $exist=$this->row("SELECT email FROM `antimult` WHERE `ip`=:IP",$p);
 
-        if(!count($exist)){ return false;}
+        if(empty($exist)){ return false;}
 
-        if(!count($this->query("SELECT id FROM `users` WHERE `email`='".$exist['email']."'"))){return false;}
+        if(empty($this->query("SELECT id FROM `users` WHERE `email`='".$exist['email']."'"))){return false;}
 
         return true;
 

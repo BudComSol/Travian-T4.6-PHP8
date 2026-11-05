@@ -1243,3 +1243,12 @@ INSERT INTO `oduller` (`id`, `odul`, `miktar`, `tip`, `bonus`, `durum`, `oran`, 
 (24, '+3 Çark Çevirme', 3, 'cark', 0, 1, 1, '115.00'),
 (25, '1000 Gümüş', 1000, 'silver', 0, 1, 1, '100.00');
 COMMIT;
+CREATE TABLE IF NOT EXISTS `paketler` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `paketadi` text NOT NULL,
+  `fiyat` text NOT NULL,
+  `miktar` int(11) NOT NULL,
+  `tip` int(11) NOT NULL,
+  `cark` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
