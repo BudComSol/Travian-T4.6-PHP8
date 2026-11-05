@@ -3607,7 +3607,7 @@ define("quest16", "Yeni bir kahraman seviyesine ulaştıktan sonra mevcut puanla
 define("quest17", "Her öznitelik için puan dağılımını istediğiniz zaman değiştirebilirsiniz. Bunun için tek ihtiyacınız olan, maceralarda bulunabilecek bir bilgelik kitabıdır.");
 define("quest18", "Askerleri eğitin");
 define("quest19", "Şimdi ilk Askerlerinizi eğitme zamanı. Kışlada zaten bir tür piyade birimi eğitebilirsiniz.");
-define("quest20", "Train" . round(250 * xQUEST) . "kışlada askerler");
+define("quest20", "Train" . round(250 * (defined('QUEST') ? QUEST : true)) . "kışlada askerler");
 define("quest21", "Şanlı bir ordunun temel taşı atılmıştır! Her zaman çevrimiçi olmasanız bile saldırıya uğrayabileceğinizi unutmayın.");
 define("quest22", "Şehir Duvarı");
 define("quest23", "Şimdi ayrıca bazı savunma sistemleri de inşa etmelisiniz. Bir tahkimat, temel savunmanızı artıracak ve ayrıca savunma Askerlerinin savaş gücünü artıracaktır.");

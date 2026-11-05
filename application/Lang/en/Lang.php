@@ -3556,7 +3556,7 @@ define("quest16", "Spread the available points after reaching a new level of her
 define("quest17", "You can change the distribution of points for each attribute at any time. All you need for this is a book of wisdom, which can be found in adventures.");
 define("quest18", "Train troops");
 define("quest19", "Now it is time to train your first troops. In the barracks, you can already train one type of infantry unit.");
-define("quest20", "Train " . round(250 * xQUEST) . " troops in the barracks");
+define("quest20", "Train " . round(250 * (defined('QUEST') ? QUEST : true)) . " troops in the barracks");
 define("quest21", "The cornerstone for a glorious army has been laid! Always remember that you can still be attacked, even when you are not online.");
 define("quest22", "City Wall");
 define("quest23", "Now you should also build some defences. A fortification will increase your base defence and also increases the fighting strength of defending troops.");
