@@ -18,7 +18,11 @@ if (!isset($_GET['code'])) {
         header('Location: login.php');
         exit();
     } else {
-        if (!$_SESSION['usrname'] && $actData['username']) {
+        // the token identifies the account; never keep a stale name from an earlier signup
+        if ($actData['username']) {
+            if ($_SESSION['usrname'] !== $actData['username']) {
+                unset($_SESSION['vid'], $_SESSION['sector']);
+            }
             $_SESSION['usrname'] = $actData['username'];
         }
     }
