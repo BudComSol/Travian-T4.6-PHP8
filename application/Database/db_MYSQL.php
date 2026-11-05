@@ -1552,6 +1552,7 @@ function InsertUniqueIP($ip,$email){
 
 
 	function UpdateOnline($mode, $name = "", $uid = 0,$sessid=0) {
+		$uid = (int)$uid;
 
 
 
