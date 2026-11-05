@@ -1,7 +1,7 @@
 <?php
 
-require_once("Data/hero_full.php");
 require_once("Database.php");
+require_once("Data/hero_full.php");
 require_once("Session.php");
 $language = $session->lang;
 require_once("Lang/" . ($language ? $language : LANG) . "/Lang.php");
