@@ -433,6 +433,8 @@ define("VILLAGE_CENTER", "Village centre");
 define("FINISH_GOLD", "Finish all construction and research orders in this village immediately for 2 Gold?");
 define("WAITING_LOOP", "(waiting loop)");
 define("HRS", "(hrs.)");
+define("DAYS", "days");
+define("STARTNOW", "The server has started. Click here to log in.");
 define("DONE_AT", "done at");
 define("CANCEL", "cancel");
 define("LOYALTY", "Loyalty");
