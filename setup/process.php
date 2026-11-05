@@ -1,8 +1,10 @@
 <?php
 
 error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
-
-if(file_exists("../application/config.php") && !isset($_POST['subconst'])) {
+
+require_once __DIR__ . '/../dropdb.php';
+
+if(file_exists("../application/config.php") && !isset($_POST['subconst'])) {
     include_once("../application/config.php");
     include_once("../application/Database/db_MYSQL.php");
 }
@@ -22,9 +24,14 @@ class Process {
 							header("Location: index.php");
 						}
 	}
-
+
 	function constForm() {
-		$myFile = "../application/config.php";
+		if (!isset($_POST['confirm_replace']) || $_POST['confirm_replace'] !== '1') {
+			header("Location: index.php?s=1&c=2");
+			exit;
+		}
+
+		$myFile = "../application/config.php";
 		$fh = fopen($myFile, 'w') or die("<br/><br/><br/>Can't open file:application/config.php");
 		$text = file_get_contents("data/constant_format.tpl");
 		$text = preg_replace("'%SSERVER%'", $_POST['sserver'], $text);
@@ -54,11 +61,10 @@ class Process {
 		fclose($fh);
 
 		$p_query = file_get_contents("data/sql.sql");
-		$mysqli = new mysqli($_POST['sserver'],$_POST['suser'],$_POST['spass'],$_POST['sdb']);
-		$mysqli->set_charset("utf8");
-
-		$sql = "DROP TABLE IF EXISTS `a2b`,`odemeler`,`paketler`, `abdata`, `achiev`, `activate`, `adventure`, `alidata`, `ali_invite`, `ali_log`, `ali_permission`, `antimult`, `artefacts`, `attacks`, `auction`, `banlist`, `bdata`, `buygold`, `confs`, `critical_log`, `demolition`, `diplomacy`, `enforcement`, `farmlist`, `fdata`, `hero`, `heroface`, `heroinventory`, `heroitems`, `links`, `log`, `map_control`, `market`, `mdata`, `medal`, `movement`, `ndata`, `newproc`, `news`, `odata`, `online`, `palevo`, `password`, `prisoners`, `queue`, `raidlist`, `referals`, `research`, `roullet`, `route`, `sitters`, `spravka`, `tdata`, `training`, `units`, `users`, `vdata`, `wdata`, `config`, `codes`, `payments`, `autorenewals`, `quests`, `deleted`, `ignore`, `plusaddons`, `storage`, `support`;";
-		@$mysqli->query($sql);
+		$mysqli = new mysqli($_POST['sserver'],$_POST['suser'],$_POST['spass'],$_POST['sdb']);
+		$mysqli->set_charset("utf8");
+
+		dropSetupTables($mysqli, $p_query);
 
 		$big = $mysqli->multi_query($p_query);
 		if ($big) {
@@ -84,18 +90,16 @@ class Process {
 	
 	}
 
-	function createStruc() {
-        $p_query = file_get_contents("data/sql.sql");
-		$mysqli = new mysqli(SQL_SERVER,SQL_USER,SQL_PASS,SQL_DB);
-
-        //mysqli_connect(SQL_SERVER, SQL_USER, SQL_PASS);
-		//
-		/* query all tables */
-
-		$sql = "DROP TABLE `a2b`, `odemeler`,`paketler`,`abdata`, `achiev`, `activate`, `adventure`, `alidata`, `ali_invite`, `ali_log`, `ali_permission`, `antimult`, `artefacts`, `attacks`, `auction`, `banlist`, `bdata`, `buygold`, `confs`, `critical_log`, `demolition`, `diplomacy`, `enforcement`, `farmlist`, `fdata`, `hero`, `heroface`, `heroinventory`, `heroitems`, `links`, `log`, `map_control`, `market`, `mdata`, `medal`, `movement`, `ndata`, `newproc`, `news`, `odata`, `online`, `palevo`, `password`, `prisoners`, `queue`, `raidlist`, `referals`, `research`, `roullet`, `route`, `sitters`, `spravka`, `tdata`, `training`, `units`, `users`, `vdata`, `wdata`, `config`, `codes`, `payments`, `autorenewals`, `quests`, `deleted`, `ignore`, `plusaddons`;";
-
-		//@$database->queryFetch($sql);
-		$mysqli->query($sql);
+	function createStruc() {
+		if (!isset($_POST['confirm_replace']) || $_POST['confirm_replace'] !== '1') {
+			header("Location: index.php?s=2&c=2");
+			exit;
+		}
+
+        $p_query = file_get_contents("data/sql.sql");
+		$mysqli = new mysqli(SQL_SERVER,SQL_USER,SQL_PASS,SQL_DB);
+
+		dropSetupTables($mysqli, $p_query);
         $p_query = 'START TRANSACTION;' . $p_query . '; COMMIT;';
 
             $query_split = preg_split ("/[;]+/", $p_query);

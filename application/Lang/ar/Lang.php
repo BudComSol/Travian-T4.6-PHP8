@@ -181,6 +181,9 @@ define("INS126", "Veritabanını içe aktarırken hata oluştu. Yapılandırmay�
 define("INS127", "SQL Yapısı Oluşturun");
 define("INS128", "Uyarı: Bu biraz zaman alabilir. Tıklamayın, sadece bir sonraki sayfa yüklenene kadar bekleyin");
 define("INS129", "Günde ne kadar macera veriyor?");
+define("INS130", "Kurulum, kurulum şemasında tanımlanan tabloları silip yeniden oluşturur. Önce mevcut verileri yedekleyin; diğer tablolara dokunulmaz.");
+define("INS131", "Devam etmek için veritabanı değiştirme onay kutusunu işaretleyin.");
+define("INS132", "Mevcut kurulum tablolarının silineceğini anlıyorum.");
 
 define("CLANG", "Bir dil seç:");
 define("MULTI_RULES", "Yasak: <br/> 1 IP'de 1 hesaba daha fazla kaydol. <br/> İlginç değiliz: erkek / kız kardeş / aile vb. İle oynuyorsun: 1 IP - 1 Hesap. <br/>
