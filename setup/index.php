@@ -43,7 +43,6 @@ include("../application/Lang/".($_SESSION['ilang'] ? $_SESSION['ilang'] : 'en').
     <link rel="shortcut icon" href="../favicon.ico"/>
     <link href="../gpack/lang/en/compact.css" rel="stylesheet" type="text/css" />
 
-    <script src="http://www.cy-pr.com/tools/time/time.js" type="text/javascript"></script>
 </head>
 <style>h1 {
 
