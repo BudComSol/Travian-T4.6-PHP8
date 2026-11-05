@@ -106,13 +106,18 @@ class Session {
         $this->mescheck = $_SESSION['mescheck'] = $generator->generateRandStr(3);
     }
 
+    private function authLog($reason){
+        $line = date(DATE_ATOM).' [auth] '.$reason.' page='.basename($_SERVER['PHP_SELF']).' sid='.session_id().' user='.($_SESSION['username'] ?? '-').PHP_EOL;
+        @file_put_contents(__DIR__.'/queue2/error_log.txt', $line, FILE_APPEND | LOCK_EX);
+    }
+
     private function checkLogin(){
         global $database;
         //print_r($_SESSION);
         
         if(isset($_SESSION['username']) && isset($_SESSION['sessid'])) {
             $mas=count($database->GetAOnline2($_SESSION['sessid']));
-            if(!$mas){ $this->Logout();return false;}
+            if(!$mas){ $this->authLog('no online row for sessid '.$_SESSION['sessid']); $this->Logout();return false;}
             
             //Get and Populate Data
             $this->PopulateVar();
@@ -128,6 +133,7 @@ class Session {
 
         }
         
+        $this->authLog('session has no username/sessid (cookie not kept?)');
         return false;
     }
 
@@ -147,7 +153,8 @@ class Session {
 
         $u = $database->getUserSes($_SESSION['username']);
 
-        if(!$u){ // check if deleted
+        if(!$u){ $this->authLog('user row not found');
+            // check if deleted
             $dData = $database->queryFetch('SELECT * FROM `deleted` WHERE `username` = "'.$_SESSION['username'].'" ');
             if($dData['id']){
                 session_destroy();
@@ -258,6 +265,7 @@ class Session {
         $this->unread=$database->NoticeMessage($this->uid);
 
         if(empty($this->villages) || $this->villages == ''){
+            $this->authLog('user has no villages -> logout.php');
             header('Location: logout.php');
         }
         $this->vvillages = $vilmas[1];
