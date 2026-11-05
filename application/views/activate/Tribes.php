@@ -9,7 +9,7 @@
             <h1 class="titleInHeader"><?php echo $lang['Register']['00']; ?></h1>
             <div class="activationScreen">
                 <?php echo $lang['Register']['01']; ?>
-                <form method="post" action="">
+                <form method="post" action="activate.php?token=<?php echo rawurlencode((string) ($_GET['token'] ?? '')); ?>">
                     <div id="presentation">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 250">
                             <filter id="inset" x="0" y="0">
