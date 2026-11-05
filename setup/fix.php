@@ -4,18 +4,24 @@
 ## except for the application, mcache, hcache, and setup folders.
 
 function AllDirChmod( $dir = "./", $dirModes = 0755, $fileModes = 0644 ){
-   $d = new RecursiveDirectoryIterator( $dir );
-   foreach( new RecursiveIteratorIterator( $d, 1 ) as $path ){
+   $writable = array( 'application', 'mcache', 'hcache', 'setup' );
+   $root = rtrim( $dir, DIRECTORY_SEPARATOR );
+   $d = new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS );
+   foreach( new RecursiveIteratorIterator( $d, RecursiveIteratorIterator::SELF_FIRST ) as $path ){
       if( $path->isDir() ) {
          $mode = $dirModes;
-         if( $path->getPath() === rtrim( $dir, DIRECTORY_SEPARATOR )
-             && in_array( $path->getFilename(), array( 'application', 'mcache', 'hcache', 'setup' ), true ) ) {
+         $rel = ltrim( substr( $path->getPathname(), strlen( $root ) ), '/\\' );
+         $top = preg_split( '#[/\\\\]#', $rel )[0];
+         if( in_array( $top, $writable, true ) ) {
             $mode = 0777;
          }
-         chmod( $path, $mode );
+         chmod( $path->getPathname(), $mode );
       }
-      else if( is_file( $path ) ) chmod( $path, $fileModes );
+      else if( is_file( $path->getPathname() ) ) chmod( $path->getPathname(), $fileModes );
   }
+   foreach( $writable as $w ) {
+      if( is_dir( $root . '/' . $w ) ) chmod( $root . '/' . $w, 0777 );
+   }
 }
 
 ## Function to clean out the contents of specified directory

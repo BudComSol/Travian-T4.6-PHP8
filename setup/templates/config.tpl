@@ -50,7 +50,7 @@ if(isset($_GET['c']) && $_GET['c'] == 1) { ?>
                 </select>
             </td></tr>
 
-        <td><span class="f9 c6"><?=INS30?></span></td><td><input name="homepage" type="text" id="homepage" value="http://<?php echo $_SERVER['HTTP_HOST']; ?>/"></td></tr>
+        <td><span class="f9 c6"><?=INS30?></span></td><td><input name="homepage" type="text" id="homepage" value="https://<?php echo htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES); ?>/"></td></tr>
 
         <td><span class="f9 c6"><?=INS31?></span></td><td>
             <select name="beginner">
