@@ -17,6 +17,19 @@ if(isset($_GET['lang']) && in_array($_GET['lang'], array('ar','en'))){
     //header('Location: ')
 }
 
+if (!defined('MAX_LEVEL_COST')) {
+    define('MAX_LEVEL_COST', 5);
+}
+if (!defined('QUEST')) {
+    define('QUEST', true);
+}
+if (!defined('SERVER_NAME')) {
+    define('SERVER_NAME', 'Travian');
+}
+if (!defined('SPEED')) {
+    define('SPEED', 1);
+}
+
 include("../application/Lang/".($_SESSION['ilang'] ? $_SESSION['ilang'] : 'en')."/Lang.php");
 
 
