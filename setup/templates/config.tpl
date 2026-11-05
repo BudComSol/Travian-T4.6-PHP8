@@ -1,7 +1,10 @@
 <?php
 
-if(isset($_GET['c']) && $_GET['c'] == 1) {
-echo "<div class=\"headline\"><span class=\"f10 c5\"><?=INS10?></span></div><br>";
+if(isset($_GET['c']) && $_GET['c'] == 1) { ?>
+<div class="headline"><span class="f10 c5"><?=INS10?></span></div><br>
+<?php } elseif(isset($_GET['c']) && $_GET['c'] == 2) { ?>
+<div class="headline"><span class="f10 c5"><?=INS131?></span></div><br>
+<?php
 }
 
 
@@ -167,7 +170,8 @@ echo "<div class=\"headline\"><span class=\"f10 c5\"><?=INS10?></span></div><br>
 
 
     <center>
+        <p><strong><?=INS130?></strong></p>
+        <label><input type="checkbox" name="confirm_replace" value="1" required> <?=INS132?></label><br>
         <input type="submit" name="Submit" id="Submit" value="Submit">
         <input type="hidden" name="subconst" value="1"></center>
 </form>
-
