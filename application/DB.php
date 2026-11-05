@@ -76,8 +76,8 @@ class DB
     */
         private function Init($query,$parameters = "")
         {
-        if(!$this->bConnected) { $this->Connect(); }
         try {
+                if(!$this->bConnected) { $this->Connect(); }
 
                 # Prepare query
                 $this->sQuery = $this->pdo->prepare($query);
@@ -98,25 +98,11 @@ class DB
                 $this->succes     = $this->sQuery->execute();
 
             }
-            catch(PDOException $e)
+            catch(Throwable $e)
             {
-                    # Write into log and display Exception
-                $data['custom'] = array(
-                    'time' => time()
-                );
-                $data['ses']=$_SESSION;
-                $data['post']=$_POST;
-                $data['serv']=$_SERVER;
-                $data['err']=$this->ExceptionLog($e->getMessage());
-                $data['query']=$query;
-                $data['params']=$parameters;
-                //echo $data['err'];
-                // print_r($data);
-                echo $data['query']."<br/>".$data['err'];
-                echo '<br/>';
-                print_r($parameters);
-                file_put_contents('application/queue2/error_log.txt', var_export($data, true) . "\r\n\r\n",FILE_APPEND);
-//exit;
+                $this->parameters = array();
+                $this->WriteExceptionLog($e->getMessage(), $query, $parameters);
+                throw $e;
             }
 
             # Reset the parameters
@@ -286,25 +272,19 @@ class DB
         public function get_last_id(){
          return $this->pdo->lastInsertId();
         }
-       /**
-    * Writes the log and returns the exception
-    *
-    * @param  string $message
-    * @param  string $sql
-    * @return string
-    */
-    private function ExceptionLog($message , $sql = "")
+    private function WriteExceptionLog($message, $query, $parameters)
     {
-        $exception  = 'Unhandled Exception. <br />';
-        $exception .= $message;
-        $exception .= "<br /> DEATH FOR YOU.";
+        $logFile = __DIR__ . '/queue2/error_log.txt';
+        $entry = array(
+            'time' => date(DATE_ATOM),
+            'error' => $message,
+            'query' => $query,
+            'params' => $parameters
+        );
 
-        if(!empty($sql)) {
-            # Add the Raw SQL to the Log
-            $exception .= "\r\nRaw SQL : "  . $sql;
+        if (file_put_contents($logFile, var_export($entry, true) . PHP_EOL . PHP_EOL, FILE_APPEND | LOCK_EX) === false) {
+            error_log('Unable to write database exception log to ' . $logFile . ': ' . $message);
         }
-
-        return $exception;
     }
 }
 $db = new Db;
