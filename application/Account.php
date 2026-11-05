@@ -206,8 +206,18 @@ class Account {
 					}else{
 						
 						$this->Login(1);
+						header('Location: dorf1.php');
 					}
+					exit();
 
+				}else{
+					// registration failed; drop the stale request if the account already exists
+					$exists = $database->queryFetch("SELECT id FROM users WHERE username = :u", array('u' => $dbarray[0]['username']));
+					if($exists && $exists['id']){
+						$regme->unreg($dbarray[0]['username']);
+						header('Location: login.php');
+						exit();
+					}
 				}
 
      }
@@ -258,7 +268,7 @@ class Account {
 		}else{
 			if($isActive){
 				$_POST['user'] = $_SESSION['username'];
-				session_unset($_SESSION['usrname']); // This for activate.php
+				unset($_SESSION['usrname']); // This for activate.php
 				$sessid=$generator->generateRandID();
 				$_SESSION['sessid']=$sessid;
 				$_SESSION['s1']=$_SESSION['s2']=$_SESSION['s3']=$_SESSION['s4']=$_SESSION['s5']=$_SESSION['s6']=1;
