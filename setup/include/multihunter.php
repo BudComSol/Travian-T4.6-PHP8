@@ -2,6 +2,7 @@
 $gameinstall = 1;
 
 		include ("../../application/config.php");
+include_once ("../../application/Lang/" . LANG . "/Lang.php");
 include ("../../application/Database/db_MYSQL.php");
 include ("../../application/Register.php");
 			$wid = $database->getBaseID(0,0);

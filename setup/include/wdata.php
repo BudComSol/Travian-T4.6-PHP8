@@ -1,5 +1,6 @@
 <?php
 include ("../../application/config.php");
+include_once ("../../application/Lang/" . LANG . "/Lang.php");
 include ("../../application/Database/db_MYSQL.php");
 set_time_limit(0);
 ini_set('memory_limit', '-1');
