@@ -13,7 +13,7 @@ $database->starttransaction();
 $xyas=(1+(2*WORLD_MAX));
 
 for($i=0; $i<$xyas; $i++){
-    $q="INSERT into wdata values ";
+    $q="INSERT IGNORE into wdata values";
 $y=(WORLD_MAX-$i);
 
 	for($j=0; $j<$xyas; $j++){
