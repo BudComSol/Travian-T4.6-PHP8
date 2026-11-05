@@ -189,6 +189,8 @@ define("INS129", "How much adventures gives per day?");
 define("INS130", "Setup drops and recreates tables declared in the setup schema. Back up existing data first; other tables are left untouched.");
 define("INS131", "Confirm the database replacement checkbox before continuing.");
 define("INS132", "I understand that existing setup tables will be deleted.");
+define("INS133", "Database setup complete");
+define("INS134", "The database tables and initial server configuration were created in the previous step.");
 
 define("CLANG", "Select a language:");
 define("MULTI_RULES", "Prohibited:<br/>Register more tham 1 account on 1 IP.<br/>We don't interesting in : you play with brother/sister/family etc: 1 IP - 1 Account.<br/>

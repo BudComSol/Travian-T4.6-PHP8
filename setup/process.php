@@ -85,7 +85,7 @@ class Process {
 		$mysqli->query($sql) or die(mysqli_error($mysqli));
 
 		
-		header("Location: index.php?s=3");
+		header("Location: index.php?s=2");
 
 	
 	}
