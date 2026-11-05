@@ -8,6 +8,12 @@ $amt = 13;
 $speed = round(SPEED/100);
 //серая зона
 $nareadis=22;
+// Already installed (e.g. page refresh after a slow/failed request): don't re-run
+$existing = $database->query("SELECT id FROM users WHERE id = 3 LIMIT 1");
+if (!empty($existing)) {
+    header("Location: ../index.php?s=4");
+    exit;
+}
 $database->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
 $database->starttransaction();
 $xyas=(1+(2*WORLD_MAX));
