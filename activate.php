@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('application/Account.php');
 if (!isset($_GET['code'])) {
     $pData = array(
@@ -23,7 +24,8 @@ if (!isset($_GET['code'])) {
     require_once("application/views/main/Top_Out.php");
     require_once("application/views/menu.php");
 
-    if (!$_SESSION['step']) $_SESSION['step'] = 1;
+    // a fresh visit (no page given) always starts at tribe selection
+    if (!isset($_GET['page']) || !$_SESSION['step']) $_SESSION['step'] = 1;
 
     switch ($_GET['page']) {
         case 'vid':
@@ -47,6 +49,7 @@ if (!isset($_GET['code'])) {
                     $_SESSION['vid'] = $_POST['vid'];
 
                     header('Location: activate.php?page=sector');
+                    exit();
                 }
             }
             require_once("application/views/activate/Tribes.php");
@@ -61,11 +64,11 @@ if (!isset($_GET['code'])) {
             }
 
             if (isset($_POST) && $_POST) {
-                print_r($_POST);
                 if (in_array($_POST['sector'], array('nw', 'no', 'sw', 'so'))) {
                     $_SESSION['step'] = 3;
                     $_SESSION['sector'] = $_POST['sector'];
                     header('Location: activate.php?page=confirmation');
+                    exit();
                 }
             }
             require_once("application/views/activate/Sectors.php");
@@ -103,6 +106,12 @@ if (!isset($_GET['code'])) {
                 $_SESSION['username'] = $_SESSION['usrname'];
 
                 $account->Activate();
+
+                // Activate() redirects on success; reaching here means it failed, so restart the selection
+                unset($_SESSION['vid'], $_SESSION['sector']);
+                $_SESSION['step'] = 1;
+                header('Location: activate.php?page=vid');
+                exit();
             }
 
             require_once("application/views/activate/Confirm.php");
