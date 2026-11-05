@@ -5,14 +5,14 @@
         <div id="content" class="activate">
             <div class="activateWithSectors">
             <h1 class="titleInHeader withBackButton"><?php echo $lang['Register']['27']; ?></h1>
-                <a id="backButton" class="contentTitleButton buttonFramed green withIcon rectangle" href="activate.php?page=vid">
+                <a id="backButton" class="contentTitleButton buttonFramed green withIcon rectangle" href="activate.php?page=vid&amp;token=<?php echo rawurlencode((string) ($_GET['token'] ?? '')); ?>">
                     <svg viewBox="0 0 20 20" preserveAspectRatio="none">
                         <path d="M19 1L1 10L19 19z"></path>
                     </svg>
                 </a>
             <div class="activationScreen">
                 <?php echo $lang['Register']['28']; ?>
-                <form method="post" action="activate.php?page=sector">
+                <form method="post" action="activate.php?page=sector&amp;token=<?php echo rawurlencode((string) ($_GET['token'] ?? '')); ?>">
 
                     <div id="presentation" class="sectors">
 

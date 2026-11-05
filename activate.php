@@ -7,8 +7,12 @@ if (!isset($_GET['code'])) {
         'CClass' => 'activate',
     );
 
-    $Token = $_GET['token'];
-    $actData = $database->queryFetch('SELECT * FROM activate WHERE `password` = "' . $Token . '"');
+    $Token = $_GET['token'] ?? '';
+    $tokenQuery = $Token !== '' ? '&token=' . rawurlencode($Token) : '';
+    $actData = $database->queryFetch(
+        'SELECT * FROM activate WHERE `password` = :token',
+        array('token' => $Token)
+    );
 
     if (!$actData['id'] && !$_SESSION['usrname']) {
         header('Location: login.php');
@@ -48,7 +52,7 @@ if (!isset($_GET['code'])) {
                     $_SESSION['step'] = 2;
                     $_SESSION['vid'] = $_POST['vid'];
 
-                    header('Location: activate.php?page=sector');
+                    header('Location: activate.php?page=sector' . $tokenQuery);
                     exit();
                 }
             }
@@ -59,7 +63,7 @@ if (!isset($_GET['code'])) {
         case 2:
             if (!$_SESSION['vid']) {
                 $_SESSION['step'] = 1;
-                header('Location: activate.php?page=vid');
+                header('Location: activate.php?page=vid' . $tokenQuery);
                 exit();
             }
 
@@ -67,7 +71,7 @@ if (!isset($_GET['code'])) {
                 if (in_array($_POST['sector'], array('nw', 'no', 'sw', 'so'))) {
                     $_SESSION['step'] = 3;
                     $_SESSION['sector'] = $_POST['sector'];
-                    header('Location: activate.php?page=confirmation');
+                    header('Location: activate.php?page=confirmation' . $tokenQuery);
                     exit();
                 }
             }
@@ -78,7 +82,7 @@ if (!isset($_GET['code'])) {
         case 3:
             if (!$_SESSION['vid'] || !$_SESSION['sector']) {
                 $_SESSION['step'] = 1;
-                header('Location: activate.php?page=vid');
+                header('Location: activate.php?page=vid' . $tokenQuery);
                 exit();
             }
 
@@ -110,7 +114,7 @@ if (!isset($_GET['code'])) {
                 // Activate() redirects on success; reaching here means it failed, so restart the selection
                 unset($_SESSION['vid'], $_SESSION['sector']);
                 $_SESSION['step'] = 1;
-                header('Location: activate.php?page=vid');
+                header('Location: activate.php?page=vid' . $tokenQuery);
                 exit();
             }
 
