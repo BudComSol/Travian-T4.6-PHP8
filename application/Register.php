@@ -10,16 +10,16 @@ class Registr
         if ($starttime < $time) {
             $timep = $time;
         } else {
-            $timep = $starttime;
+            $timep = intval($starttime);
         }
         $params = array('user' => $username, 'pass' => $password, 'email' => $email, 'tribe' => intval($tribe), 'ref' => intval($ref), 'timer' => $timep, 'up' => $timep);
-        //$ptime = time() + PROTECTION;
+        //$ptime = time() + intval(PROTECTION);
         if (OPENING > time()) {
-            $ptime = OPENING + PROTECTION;
+            $ptime = intval(OPENING) + intval(PROTECTION);
         } else {
-            $ptime = time() + PROTECTION;
+            $ptime = time() + intval(PROTECTION);
         }
-        $q = "INSERT INTO users (username,password,email,tribe,lastupdate,regtime,ptime,invited,gold,advtime,msg) VALUES (:user, :pass, :email,  :tribe,  :up, :timer, " . $ptime . ", :ref, " . DEFAULT_GOLD . "," . $timep . ",1)";
+        $q = "INSERT INTO users (username,password,email,tribe,lastupdate,regtime,ptime,invited,gold,advtime,msg) VALUES (:user, :pass, :email,  :tribe,  :up, :timer, " . $ptime . ", :ref, " . intval(DEFAULT_GOLD) . "," . $timep . ",1)";
         $database->query($q, $params);
         return $database->get_last_id();
 
